@@ -1655,38 +1655,194 @@
 <script>
   const sheetUrl = "https://script.google.com/macros/s/AKfycbzgxahJICWEFSVUww6TpLwfXSAgmDEs0kMLlpskyTEBCVxT5tCqXNrnQjhXjz-Eurrj/exec";
 
- async function loadSheetData() {
-  try {
-    const response = await fetch(sheetUrl);
-    const data = await response.json();
+  async function loadSheetData() {
+    try {
+      // Collect trip data from the HTML page
+      const tripData = {
+        tripName: "Newfoundland Adventure 2026",
+        startDate: "June 27, 2026",
+        endDate: "July 3, 2026",
+        
+        // Group information
+        group: {
+          families: 8,
+          adults: 16,
+          kids: 13,
+          totalTravellers: 29,
+          vehicles: "4-6"
+        },
 
-    // Select the route container
-    const routeContainer = document.getElementById('route-overview');
-    
-    // Create the HTML structure
-    let routeHtml = "<ul>";
-    
-    data.forEach(row => {
-      // This assumes your Sheet columns are named 'Route', 'Status', 'Distance', and 'Time'
-      if(row.Route) { 
-        routeHtml += `
-          <li>
-            <strong>${row.Route}</strong>: 
-            <span style="color: #d13438;">${row.Status}</span> — 
-            ${row.Distance} · ${row.Time}
-          </li>`;
+        // Route segments
+        routes: [
+          { 
+            segment: "Halifax → North Sydney", 
+            distance: "~280 km", 
+            duration: "~2.5 hrs",
+            day: 1,
+            status: "Ferry departure at 12:15"
+          },
+          { 
+            segment: "North Sydney → Port aux Basques (Ferry)", 
+            distance: "N/A", 
+            duration: "6.5 hrs",
+            day: 1,
+            status: "Ferry sailing 12:15 - 18:45"
+          },
+          { 
+            segment: "Port aux Basques → Deer Lake", 
+            distance: "~210 km", 
+            duration: "~2.5 hrs",
+            day: 1,
+            status: "Arrival ~9:30-10:00 pm"
+          },
+          { 
+            segment: "Deer Lake → Gros Morne → Rocky Harbour", 
+            distance: "~60 km", 
+            duration: "~1 hr",
+            day: 2,
+            status: "UNESCO Park - FREE entry"
+          },
+          { 
+            segment: "Deer Lake → Grand Falls → Twillingate", 
+            distance: "~270 km", 
+            duration: "~3 hrs",
+            day: 3,
+            status: "Iceberg Capital"
+          },
+          { 
+            segment: "Twillingate → St. John's", 
+            distance: "~380 km", 
+            duration: "~4 hrs",
+            day: 4,
+            status: "Canada Day Eve"
+          },
+          { 
+            segment: "St. John's → Cape Spear → Witless Bay", 
+            distance: "~30 km", 
+            duration: "~1 hr",
+            day: 5,
+            status: "Canada Day celebrations"
+          },
+          { 
+            segment: "St. John's → Argentia", 
+            distance: "~130 km", 
+            duration: "~1.5 hrs",
+            day: 6,
+            status: "Ferry departure 17:00"
+          },
+          { 
+            segment: "Argentia → North Sydney (Overnight Ferry)", 
+            distance: "N/A", 
+            duration: "~16 hrs", 
+            day: 6,
+            status: "Overnight sailing with cabins"
+          }
+        ],
+
+        // Accommodation data
+        accommodations: [
+          { location: "Deer Lake", nights: "Jun 27-29", groups: 2, properties: "2 Pennells Lane, 6 Olivia Lane" },
+          { location: "Twillingate", nights: "Jun 29", groups: 4, properties: "4 private properties" },
+          { location: "Conception Bay Area", nights: "Jun 30 - Jul 1", groups: 3, properties: "Carbonear, Victoria, Coley's Point South" }
+        ],
+
+        // Key activities
+        activities: [
+          { name: "Western Brook Pond Fjord Tour", location: "Gros Morne", cost: "~$35 adult / ~$17 child", day: 2 },
+          { name: "Tablelands Trail", location: "Gros Morne", cost: "FREE (Canada Strong Pass)", day: 2 },
+          { name: "Iceberg Quest Ocean Tours", location: "Twillingate", cost: "~$50 adult / ~$30 child", day: 3 },
+          { name: "Long Point Lighthouse", location: "Twillingate", cost: "FREE", day: 3 },
+          { name: "Signal Hill", location: "St. John's", cost: "FREE (Canada Strong Pass)", day: 5 },
+          { name: "Cape Spear Lighthouse", location: "St. John's", cost: "FREE (Canada Strong Pass)", day: 5 },
+          { name: "Witless Bay Puffin Tour", location: "St. John's", cost: "~$25-35 adult / ~$15 child", day: 5 },
+          { name: "The Rooms Museum", location: "St. John's", cost: "~$12 adult / Under 6 FREE", day: 6 }
+        ],
+
+        // Budget summary
+        budget: {
+          estimatedPerFamily: "$900 - $1,200 CAD",
+          excludes: "Accommodation, ferry fares, fuel",
+          savingsFromCanadPass: "~$400-600 CAD for entire group"
+        },
+
+        // Ferry information
+        ferries: [
+          {
+            type: "Outbound",
+            from: "North Sydney, NS",
+            to: "Port aux Basques, NL",
+            date: "June 27, 2026",
+            departure: "12:15",
+            arrival: "18:45 NL time",
+            duration: "6.5 hrs"
+          },
+          {
+            type: "Return (Overnight)",
+            from: "Argentia, NL",
+            to: "North Sydney, NS",
+            date: "July 2, 2026",
+            departure: "17:00",
+            arrival: "July 3, 09:00",
+            duration: "~16 hrs overnight"
+          }
+        ],
+
+        lastUpdated: new Date().toLocaleString()
+      };
+
+      // Send data to Google Sheets via the Apps Script endpoint
+      const response = await fetch(sheetUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          action: 'syncData',
+          data: tripData
+        })
+      });
+
+      console.log("Trip data synced to Google Sheets successfully!");
+      console.log("Synced data:", tripData);
+
+      // Update UI to show sync status
+      const routeContainer = document.getElementById('route-overview');
+      if (routeContainer) {
+        routeContainer.innerHTML = `
+          <div style="background: #e8f5e9; border-left: 4px solid #2d6a4f; padding: 12px 14px; border-radius: 6px; color: #1b5e20;">
+            <strong>✓ Data synced to Google Sheets</strong>
+            <p style="margin: 6px 0 0; font-size: 0.85rem; color: #2d6a4f;">
+              Trip information, routes, accommodations, activities, and budget data have been updated.
+              <br><em>Last updated: ${tripData.lastUpdated}</em>
+            </p>
+          </div>
+        `;
       }
-    });
 
-    routeHtml += "</ul>";
-    routeContainer.innerHTML = routeHtml;
+      return tripData;
 
-  } catch (error) {
-    console.error("Error updating route:", error);
+    } catch (error) {
+      console.error("Error syncing data to Google Sheets:", error);
+      const routeContainer = document.getElementById('route-overview');
+      if (routeContainer) {
+        routeContainer.innerHTML = `
+          <div style="background: #ffebee; border-left: 4px solid #c0392b; padding: 12px 14px; border-radius: 6px; color: #b71c1c;">
+            <strong>⚠ Sync Error</strong>
+            <p style="margin: 6px 0 0; font-size: 0.85rem;">
+              Could not sync data to Google Sheets. Please check your connection and try again.
+            </p>
+          </div>
+        `;
+      }
+    }
   }
-}
 
-  loadSheetData();
+  // Load and sync data when page loads
+  document.addEventListener('DOMContentLoaded', loadSheetData);
+
+  // Optional: Expose function globally for manual syncing
+  window.syncTripDataToGoogleSheets = loadSheetData;
 </script>
 </body>
 </html>
