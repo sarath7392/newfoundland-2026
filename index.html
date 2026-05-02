@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newfoundland Adventure 2026 — 8 Families</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lato:wght@300;400;700&family=Lato+Italic:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d2b45;
+    --teal: #1a6b72;
+    --teal-light: #2a9ba5;
+    --amber: #e8923a;
+    --amber-light: #f5c274;
+    --cream: #faf6ef;
+    --cream-dark: #f0e9db;
+    --stone: #c9b99a;
+    --white: #ffffff;
+    --text-dark: #1a1a2e;
+    --text-mid: #4a5568;
+    --text-light: #718096;
+    --green: #2d6a4f;
+    --red: #c0392b;
+    --free-green: #1e8449;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--navy);
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; text-align: center; padding: 3rem 2rem;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(26,107,114,0.4) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(232,146,58,0.2) 0%, transparent 50%);
+  }
+  .hero-wave {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 80px;
+  }
+  .hero-badge {
+    display: inline-block; background: var(--amber); color: var(--navy);
+    font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    padding: 6px 20px; border-radius: 100px; margin-bottom: 1.5rem;
+    position: relative; z-index: 2;
+    animation: fadeDown 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 900; color: var(--white); line-height: 1.0;
+    position: relative; z-index: 2;
+    animation: fadeDown 0.9s ease 0.1s both;
+  }
+  .hero h1 em { color: var(--amber-light); font-style: italic; }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.3rem); color: rgba(255,255,255,0.7);
+    margin-top: 1.2rem; letter-spacing: 1px; font-weight: 300;
+    position: relative; z-index: 2;
+    animation: fadeDown 1s ease 0.2s both;
+  }
+  .hero-stats {
+    display: flex; gap: 2.5rem; flex-wrap: wrap; justify-content: center;
+    margin-top: 3rem; position: relative; z-index: 2;
+    animation: fadeUp 1s ease 0.3s both;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700;
+    color: var(--amber-light); line-height: 1;
+  }
+  .hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .hero-dates {
+    margin-top: 2rem; padding: 12px 28px; border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 100px; color: rgba(255,255,255,0.85); font-size: 0.95rem; letter-spacing: 1px;
+    position: relative; z-index: 2;
+    animation: fadeUp 1s ease 0.4s both;
+  }
+  .scroll-hint {
+    position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.4); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    z-index: 2; animation: bounce 2s infinite;
+  }
+  .scroll-hint::after { content: '↓'; display: block; text-align: center; font-size: 18px; margin-top: 4px; }
+
+  /* ─── FREE BANNER ─── */
+  .free-banner {
+    background: var(--free-green); color: white; text-align: center;
+    padding: 14px 2rem; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.5px;
+  }
+  .free-banner span { font-weight: 300; opacity: 0.9; }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700;
+    color: var(--navy); margin-bottom: 0.5rem;
+  }
+  .section-title em { color: var(--teal); font-style: italic; }
+  .section-rule { width: 60px; height: 3px; background: var(--amber); margin-bottom: 2.5rem; border-radius: 2px; }
+
+  /* ─── TRIP OVERVIEW CARDS ─── */
+  .overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; }
+  .overview-card {
+    background: var(--white); border-radius: 16px; padding: 1.4rem 1.2rem;
+    border: 1px solid var(--cream-dark); text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .overview-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(13,43,69,0.1); }
+  .overview-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+  .overview-card h3 { font-size: 1.6rem; font-weight: 700; color: var(--navy); font-family: 'Playfair Display', serif; }
+  .overview-card p { font-size: 0.82rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+  /* ─── FERRY CARDS ─── */
+  .ferry-section { background: var(--navy); color: white; padding: 4rem 2rem; }
+  .ferry-inner { max-width: 1100px; margin: 0 auto; }
+  .ferry-title {
+    font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--amber-light);
+    margin-bottom: 0.4rem;
+  }
+  .ferry-rule { width: 60px; height: 3px; background: var(--amber); margin-bottom: 2rem; border-radius: 2px; }
+  .ferry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .ferry-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px; padding: 1.6rem;
+  }
+  .ferry-card h4 { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--amber-light); margin-bottom: 1rem; }
+  .ferry-route {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem;
+  }
+  .ferry-port { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; flex: 1; }
+  .ferry-arrow { color: var(--amber); font-size: 1.4rem; }
+  .ferry-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  .ferry-meta-item label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); display: block; margin-bottom: 2px; }
+  .ferry-meta-item span { font-size: 1rem; font-weight: 700; color: white; }
+  .ferry-tip { margin-top: 1.2rem; font-size: 0.82rem; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px 12px; border-left: 3px solid var(--amber); }
+
+  /* ─── ROUTE STRIP ─── */
+  .route-strip { background: var(--cream-dark); padding: 2rem; }
+  .route-inner { max-width: 1100px; margin: 0 auto; }
+  .route-inner h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); margin-bottom: 1.2rem; }
+  .route-stops {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+  }
+  .route-stop {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .route-dot {
+    width: 14px; height: 14px; background: var(--navy); border-radius: 50%;
+    border: 3px solid var(--amber);
+  }
+  .route-stop-name { font-size: 11px; font-weight: 700; color: var(--navy); letter-spacing: 0.5px; white-space: nowrap; }
+  .route-stop-km { font-size: 10px; color: var(--text-light); }
+  .route-line { flex: 1; height: 3px; background: linear-gradient(to right, var(--navy), var(--teal)); min-width: 30px; position: relative; top: -12px; }
+  .route-line-label { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 9px; color: var(--text-light); white-space: nowrap; background: var(--cream-dark); padding: 1px 4px; }
+  .route-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .route-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--navy); color: white; padding: 8px 16px;
+    border-radius: 100px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .route-btn:hover { background: var(--teal); }
+
+  /* ─── DAY CARDS ─── */
+  .days-wrapper { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+  .days-header { margin-bottom: 3rem; }
+  .days-header h2 { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--navy); }
+  .days-header .section-rule { margin-top: 0.8rem; }
+
+  .day-block { margin-bottom: 3.5rem; }
+  .day-label {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+  }
+  .day-circle {
+    width: 64px; height: 64px; background: var(--navy); border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .day-circle-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--amber-light); line-height: 1; }
+  .day-circle-month { font-size: 9px; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; }
+  .day-heading h3 { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--navy); }
+  .day-heading p { font-size: 0.85rem; color: var(--text-light); margin-top: 3px; }
+
+  .day-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+  @media (max-width: 900px) { .day-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .day-grid { grid-template-columns: 1fr; } .hero-stats { gap: 1.5rem; } }
+
+  /* ─── ACTIVITY CARDS ─── */
+  .activity-card {
+    background: var(--white); border-radius: 14px; overflow: hidden;
+    border: 1px solid var(--cream-dark);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .activity-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(13,43,69,0.1); }
+  .activity-card-header {
+    padding: 1rem 1.1rem 0.7rem;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .activity-tag {
+    display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 6px;
+  }
+  .tag-nature { background: #e8f5e9; color: var(--green); }
+  .tag-history { background: #e3f2fd; color: #1565c0; }
+  .tag-culture { background: #f3e5f5; color: #6a1b9a; }
+  .tag-food { background: #fff3e0; color: #e65100; }
+  .tag-scenic { background: #e0f7fa; color: var(--teal); }
+  .tag-kids { background: #fce4ec; color: #c62828; }
+  .tag-boat { background: #e8f4f8; color: #1a6b72; }
+  .activity-card-header h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); }
+  .activity-card-body { padding: 0.9rem 1.1rem; }
+  .activity-row { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px; font-size: 0.82rem; }
+  .activity-row-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+  .activity-row-label { color: var(--text-light); font-weight: 700; min-width: 52px; }
+  .activity-row-val { color: var(--text-dark); flex: 1; }
+  .price-free { color: var(--free-green); font-weight: 700; }
+  .price-paid { color: var(--amber); font-weight: 700; }
+
+  /* ─── SIDE CARDS ─── */
+  .side-cards { grid-column: span 1; display: flex; flex-direction: column; gap: 1rem; }
+
+  .food-stop-card {
+    background: var(--white); border-radius: 14px; padding: 1rem 1.1rem;
+    border: 1px solid var(--cream-dark); border-left: 4px solid var(--amber);
+  }
+  .food-stop-card h5 { font-size: 0.85rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .food-stop-card p { font-size: 0.78rem; color: var(--text-light); }
+  .food-stop-card .tag-food-inline {
+    display: inline-block; font-size: 9px; font-weight: 700; background: #fff3e0;
+    color: #e65100; padding: 2px 8px; border-radius: 100px; margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  .clothing-card {
+    background: var(--navy); border-radius: 14px; padding: 1rem 1.1rem;
+    color: white;
+  }
+  .clothing-card h5 { font-size: 0.82rem; font-weight: 700; color: var(--amber-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .clothing-item { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; margin-bottom: 5px; color: rgba(255,255,255,0.85); }
+  .clothing-dot { width: 6px; height: 6px; background: var(--amber); border-radius: 50%; flex-shrink: 0; }
+
+  .drive-card {
+    background: var(--teal); border-radius: 14px; padding: 1rem 1.1rem;
+    color: white;
+  }
+  .drive-card h5 { font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .drive-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .drive-row span:first-child { font-size: 0.82rem; color: rgba(255,255,255,0.8); }
+  .drive-row span:last-child { font-size: 0.9rem; font-weight: 700; color: white; }
+  .drive-btn {
+    display: block; text-align: center; margin-top: 10px;
+    background: rgba(255,255,255,0.15); color: white; padding: 7px 14px;
+    border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+    text-decoration: none; transition: background 0.2s; border: 1px solid rgba(255,255,255,0.25);
+  }
+  .drive-btn:hover { background: rgba(255,255,255,0.25); }
+
+  /* ─── WIDE ACTIVITY ─── */
+  .activity-wide { grid-column: span 2; }
+  @media (max-width: 600px) { .activity-wide { grid-column: span 1; } }
+
+  /* ─── ACCOMMODATION ─── */
+  .accom-section { background: var(--cream-dark); padding: 4rem 2rem; }
+  .accom-inner { max-width: 1100px; margin: 0 auto; }
+  .accom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+  .accom-card {
+    background: var(--white); border-radius: 16px; padding: 1.4rem;
+    border: 1px solid rgba(0,0,0,0.07);
+    transition: transform 0.2s;
+  }
+  .accom-card:hover { transform: translateY(-3px); }
+  .accom-night { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-light); margin-bottom: 6px; }
+  .accom-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .accom-location { font-size: 0.82rem; color: var(--text-light); margin-bottom: 12px; }
+  .accom-detail { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--text-mid); margin-bottom: 5px; }
+  .accom-placeholder {
+    border: 2px dashed var(--stone); background: transparent;
+  }
+  .accom-placeholder .accom-name { color: var(--stone); }
+
+  /* ─── PACKING ─── */
+  .packing-section { background: var(--white); }
+  .packing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+  .packing-col { background: var(--cream); border-radius: 14px; padding: 1.2rem 1.3rem; }
+  .packing-col h4 { font-size: 0.85rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .packing-item { display: flex; align-items: center; gap: 8px; font-size: 0.83rem; color: var(--text-mid); margin-bottom: 6px; }
+  .packing-check { width: 16px; height: 16px; border: 2px solid var(--stone); border-radius: 4px; flex-shrink: 0; }
+
+  /* ─── BUDGET ─── */
+  .budget-section { background: var(--navy); color: white; padding: 4rem 2rem; }
+  .budget-inner { max-width: 1100px; margin: 0 auto; }
+  .budget-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--amber-light); margin-bottom: 0.4rem; }
+  .budget-rule { width: 60px; height: 3px; background: var(--amber); margin-bottom: 2rem; border-radius: 2px; }
+  .budget-note { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 2rem; font-style: italic; }
+  .budget-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .budget-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 1.2rem; }
+  .budget-card h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+  .budget-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.83rem; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .budget-row:last-child { border-bottom: none; margin-bottom: 0; }
+  .budget-row span:first-child { color: rgba(255,255,255,0.7); }
+  .budget-row span:last-child { font-weight: 700; color: white; }
+  .budget-row .free { color: #4caf50; }
+  .budget-total { margin-top: 1.5rem; background: rgba(232,146,58,0.15); border: 1px solid rgba(232,146,58,0.3); border-radius: 14px; padding: 1.2rem; text-align: center; }
+  .budget-total p { font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; }
+  .budget-total h3 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--amber-light); }
+
+  /* ─── TIPS ─── */
+  .tips-section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+  .tip-card { background: var(--white); border-radius: 14px; padding: 1.3rem; border: 1px solid var(--cream-dark); display: flex; gap: 12px; }
+  .tip-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .tip-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+  .tip-card p { font-size: 0.82rem; color: var(--text-light); line-height: 1.6; }
+
+  /* ─── FOOTER ─── */
+  footer { background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem; font-size: 0.8rem; }
+  footer strong { color: var(--amber-light); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+  /* ─── DIVIDERS ─── */
+  .wave-divider svg { display: block; width: 100%; }
+  .day-divider { height: 1px; background: var(--cream-dark); margin: 2.5rem 0; }
+  .canada-day-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #c0392b; color: white; padding: 4px 14px; border-radius: 100px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-left: 12px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="hero">
+  <div class="hero-badge">📍 Halifax → Newfoundland 2026</div>
+  <h1>The Rock<br><em>Awaits</em></h1>
+  <p class="hero-sub">8 Families · 16 Adults · 13 Kids · 7 Days of Adventure</p>
+  <div class="hero-dates">✦ June 27 — July 3, 2026 ✦</div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">29</div>
+      <div class="hero-stat-label">Travellers</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">7</div>
+      <div class="hero-stat-label">Days</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">4</div>
+      <div class="hero-stat-label">Destinations</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">~1,200</div>
+      <div class="hero-stat-label">km driven</div>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll</div>
+  <svg class="hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,80 L0,40 Q360,0 720,40 Q1080,80 1440,40 L1440,80 Z" fill="#faf6ef"/>
+  </svg>
+</section>
+
+<!-- ═══════════════════════════ FREE BANNER ═══════════════════════════ -->
+<div class="free-banner">
+  🎉 Canada Strong Pass Active Jun 19–Sep 7, 2026 — <span>Gros Morne, Signal Hill & Cape Spear entry is FREE for everyone! Youth under 17 always free at Parks Canada.</span>
+</div>
+
+<!-- ═══════════════════════════ OVERVIEW ═══════════════════════════ -->
+<div class="section">
+  <h2 class="section-title">Your <em>Group</em></h2>
+  <div class="section-rule"></div>
+  <div class="overview-grid">
+    <div class="overview-card">
+      <div class="overview-icon">👨‍👩‍👧‍👦</div>
+      <h3>8</h3>
+      <p>Families</p>
+    </div>
+    <div class="overview-card">
+      <div class="overview-icon">🧑</div>
+      <h3>16</h3>
+      <p>Adults</p>
+    </div>
+    <div class="overview-card">
+      <div class="overview-icon">🧒</div>
+      <h3>13</h3>
+      <p>Kids</p>
+    </div>
+    <div class="overview-card">
+      <div class="overview-icon">🚗</div>
+      <h3>4–6</h3>
+      <p>Vehicles needed</p>
+    </div>
+    <div class="overview-card">
+      <div class="overview-icon">🌤️</div>
+      <h3>15–22°C</h3>
+      <p>Expected weather</p>
+    </div>
+    <div class="overview-card">
+      <div class="overview-icon">💰</div>
+      <h3>CAD $</h3>
+      <p>Currency</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ FERRY ═══════════════════════════ -->
+<section class="ferry-section">
+  <div class="ferry-inner">
+    <h2 class="ferry-title">Marine Atlantic Ferries</h2>
+    <div class="ferry-rule"></div>
+    <div class="ferry-grid">
+      <div class="ferry-card">
+        <h4>⛴ Outbound Crossing</h4>
+        <div class="ferry-route">
+          <div class="ferry-port">North Sydney<br><small style="font-size:0.75rem;font-weight:300;color:rgba(255,255,255,0.6)">Cape Breton, NS</small></div>
+          <div class="ferry-arrow">→</div>
+          <div class="ferry-port">Port aux Basques<br><small style="font-size:0.75rem;font-weight:300;color:rgba(255,255,255,0.6)">Newfoundland</small></div>
+        </div>
+        <div class="ferry-meta">
+          <div class="ferry-meta-item"><label>Date</label><span>Sat, 27 Jun 2026</span></div>
+          <div class="ferry-meta-item"><label>Duration</label><span>~6.5 hrs</span></div>
+          <div class="ferry-meta-item"><label>Departs</label><span>12:15</span></div>
+          <div class="ferry-meta-item"><label>Arrives</label><span>18:45</span></div>
+        </div>
+        <div class="ferry-tip">🚗 Arrive at terminal at least 2 hrs early for a group this size. Coordinate vehicle check-in across all families.</div>
+      </div>
+      <div class="ferry-card">
+        <h4>⛴ Return Crossing (Overnight)</h4>
+        <div class="ferry-route">
+          <div class="ferry-port">Argentia<br><small style="font-size:0.75rem;font-weight:300;color:rgba(255,255,255,0.6)">Newfoundland</small></div>
+          <div class="ferry-arrow">→</div>
+          <div class="ferry-port">North Sydney<br><small style="font-size:0.75rem;font-weight:300;color:rgba(255,255,255,0.6)">Cape Breton, NS</small></div>
+        </div>
+        <div class="ferry-meta">
+          <div class="ferry-meta-item"><label>Date</label><span>Thu, 02 Jul 2026</span></div>
+          <div class="ferry-meta-item"><label>Duration</label><span>~16 hrs overnight</span></div>
+          <div class="ferry-meta-item"><label>Departs</label><span>17:00</span></div>
+          <div class="ferry-meta-item"><label>Arrives</label><span>Fri Jul 3 · 09:00</span></div>
+        </div>
+        <div class="ferry-tip">🌙 Overnight crossing — book cabins in advance for families with young kids. Marine Atlantic offers 2-berth and 4-berth cabins.</div>
+      </div>
+      <div class="ferry-card" style="background:rgba(232,146,58,0.1);border-color:rgba(232,146,58,0.3);">
+        <h4>📋 Ferry Checklist for 29 People</h4>
+        <div style="font-size:0.83rem;color:rgba(255,255,255,0.8);line-height:1.8;">
+          ✅ Arrive <strong>2 hrs before departure</strong><br>
+          ✅ ID required for all travellers<br>
+          ✅ Book cabin for return crossing<br>
+          ✅ Cafeteria on board — cash & card<br>
+          ✅ Kids' play area available<br>
+          ✅ Bring car snacks for Port aux Basques → Deer Lake drive (arriving ~9–10pm)<br>
+          ✅ Confirm vehicle lengths match booking<br>
+          ✅ Motion sickness tablets for choppy days
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ ROUTE MAP ═══════════════════════════ -->
+<section class="route-strip">
+  <div class="route-inner">
+    <h3>📍 Driving Route Overview</h3>
+    <div class="route-stops">
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <div class="route-stop-name">Port aux Basques</div>
+        <div class="route-stop-km">Start</div>
+      </div>
+      <div class="route-line" style="position:relative;">
+        <span class="route-line-label">210 km · 2.5 hrs</span>
+      </div>
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <div class="route-stop-name">Deer Lake</div>
+        <div class="route-stop-km">Jun 27–29</div>
+      </div>
+      <div class="route-line" style="position:relative;">
+        <span class="route-line-label">270 km · 3 hrs</span>
+      </div>
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <div class="route-stop-name">Twillingate</div>
+        <div class="route-stop-km">Jun 30</div>
+      </div>
+      <div class="route-line" style="position:relative;">
+        <span class="route-line-label">380 km · 4 hrs</span>
+      </div>
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <div class="route-stop-name">St. John's</div>
+        <div class="route-stop-km">Jul 1–2</div>
+      </div>
+      <div class="route-line" style="position:relative;">
+        <span class="route-line-label">130 km · 1.5 hrs</span>
+      </div>
+      <div class="route-stop">
+        <div class="route-dot"></div>
+        <div class="route-stop-name">Argentia</div>
+        <div class="route-stop-km">Jul 2 · 17:00</div>
+      </div>
+    </div>
+    <div class="route-btns">
+      <a class="route-btn" href="https://www.google.com/maps/dir/Port+aux+Basques,+NL/Deer+Lake,+NL" target="_blank">🗺 Pt. Basques → Deer Lake</a>
+      <a class="route-btn" href="https://www.google.com/maps/dir/Deer+Lake,+NL/Twillingate,+NL" target="_blank">🗺 Deer Lake → Twillingate</a>
+      <a class="route-btn" href="https://www.google.com/maps/dir/Twillingate,+NL/St.+John's,+NL" target="_blank">🗺 Twillingate → St. John's</a>
+      <a class="route-btn" href="https://www.google.com/maps/dir/St.+John's,+NL/Argentia,+NL" target="_blank">🗺 St. John's → Argentia</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ INTERACTIVE MAP ═══════════════════════════ -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<style>
+  .map-section { background: var(--cream); padding: 4rem 2rem; }
+  .map-inner { max-width: 1100px; margin: 0 auto; }
+  .map-section .section-title { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--navy); }
+  .map-section .section-title em { color: var(--teal); font-style: italic; }
+
+  .day-tabs {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;
+  }
+  .day-tab {
+    padding: 8px 18px; border-radius: 100px; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.5px; cursor: pointer; border: 2px solid transparent;
+    transition: all 0.2s; background: var(--white); color: var(--text-mid);
+    border-color: var(--cream-dark);
+  }
+  .day-tab:hover { border-color: var(--navy); color: var(--navy); }
+  .day-tab.active { background: var(--navy); color: var(--amber-light); border-color: var(--navy); }
+  .day-tab.all { background: var(--teal); color: white; border-color: var(--teal); }
+  .day-tab.all:hover { background: var(--navy); border-color: var(--navy); }
+
+  .map-layout { display: grid; grid-template-columns: 1fr 320px; gap: 1.5rem; align-items: start; }
+  @media (max-width: 820px) { .map-layout { grid-template-columns: 1fr; } }
+
+  #trip-map { height: 540px; border-radius: 16px; border: 1px solid var(--cream-dark); z-index: 1; }
+
+  .map-timeline { background: var(--white); border-radius: 16px; border: 1px solid var(--cream-dark); overflow: hidden; }
+  .map-timeline-header { background: var(--navy); padding: 14px 16px; }
+  .map-timeline-header h4 { color: var(--amber-light); font-family: 'Playfair Display', serif; font-size: 1.1rem; margin: 0; }
+  .map-timeline-header p { color: rgba(255,255,255,0.5); font-size: 11px; margin: 2px 0 0; }
+  .timeline-body { max-height: 480px; overflow-y: auto; padding: 12px; }
+  .timeline-body::-webkit-scrollbar { width: 4px; }
+  .timeline-body::-webkit-scrollbar-track { background: transparent; }
+  .timeline-body::-webkit-scrollbar-thumb { background: var(--stone); border-radius: 4px; }
+
+  .tl-stop { display: flex; gap: 10px; padding: 8px 4px; cursor: pointer; border-radius: 10px; transition: background 0.15s; }
+  .tl-stop:hover { background: var(--cream); }
+  .tl-stop.active-stop { background: #e8f4f0; }
+  .tl-left { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .tl-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; border: 2px solid white; box-shadow: 0 0 0 1px currentColor; }
+  .tl-line { flex: 1; width: 2px; background: var(--cream-dark); min-height: 24px; margin: 2px auto; }
+  .tl-right { flex: 1; }
+  .tl-time { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-light); margin-bottom: 2px; }
+  .tl-name { font-size: 0.85rem; font-weight: 700; color: var(--navy); line-height: 1.3; }
+  .tl-desc { font-size: 0.75rem; color: var(--text-light); margin-top: 2px; line-height: 1.4; }
+  .tl-day-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: white; padding: 3px 10px; border-radius: 100px; margin: 8px 0 6px; display: inline-block; }
+
+  /* Leaflet popup overrides */
+  .leaflet-popup-content-wrapper { border-radius: 12px !important; box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important; border: none !important; padding: 0 !important; overflow: hidden; }
+  .leaflet-popup-content { margin: 0 !important; width: auto !important; min-width: 200px; }
+  .leaflet-popup-tip { background: white !important; }
+  .popup-inner { padding: 14px 16px; }
+  .popup-tag { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
+  .popup-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--navy); margin: 0 0 6px; }
+  .popup-row { font-size: 12px; color: var(--text-mid); margin-bottom: 3px; display: flex; gap: 6px; }
+  .popup-row span:first-child { font-weight: 700; color: var(--navy); min-width: 50px; }
+  .popup-footer { background: var(--navy); padding: 8px 16px; font-size: 11px; color: rgba(255,255,255,0.7); }
+</style>
+
+<section class="map-section">
+  <div class="map-inner">
+    <h2 class="section-title">Interactive <em>Route Map</em></h2>
+    <div class="section-rule"></div>
+    <p style="color:var(--text-light);font-size:0.88rem;margin-bottom:1.5rem;">Click a day to highlight that leg of the journey. Click any marker for full timing & activity details.</p>
+
+    <div class="day-tabs">
+      <button class="day-tab all active" onclick="showDay('all')">🗺 Full Route</button>
+      <button class="day-tab" onclick="showDay(1)" style="--c:#e8923a">Jun 27 · Day 1</button>
+      <button class="day-tab" onclick="showDay(2)" style="--c:#1a6b72">Jun 28 · Day 2</button>
+      <button class="day-tab" onclick="showDay(3)" style="--c:#1a6b72">Jun 29 · Day 3</button>
+      <button class="day-tab" onclick="showDay(4)" style="--c:#2d6a4f">Jun 30 · Day 4</button>
+      <button class="day-tab" onclick="showDay(5)" style="--c:#c0392b">Jul 1 · Day 5</button>
+      <button class="day-tab" onclick="showDay(6)" style="--c:#6a1b9a">Jul 2 · Day 6</button>
+    </div>
+
+    <div class="map-layout">
+      <div id="trip-map"></div>
+
+      <div class="map-timeline">
+        <div class="map-timeline-header">
+          <h4>Trip Timeline</h4>
+          <p id="tl-subtitle">All stops · 7 days</p>
+        </div>
+        <div class="timeline-body" id="timeline-body"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function() {
+  var map = L.map('trip-map', { zoomControl: true, scrollWheelZoom: true });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors', maxZoom: 17
+  }).addTo(map);
+
+  var DAY_COLORS = {
+    1: '#e8923a', 2: '#1a6b72', 3: '#2a9ba5', 4: '#2d6a4f', 5: '#c0392b', 6: '#6a1b9a'
+  };
+
+  var STOPS = [
+    {
+      day: 1, id: 'halifax', lat: 44.6488, lng: -63.5752,
+      time: '07:00', name: 'Halifax — Depart', icon: '🏁',
+      tag: 'Day 1 · Start', color: DAY_COLORS[1],
+      details: [['Drive', '~280 km to North Sydney'], ['Duration', '~2.5 hrs'], ['Note', 'Convoy start — all 4–6 vehicles']],
+      footer: 'Leave Halifax by 7:00 am latest'
+    },
+    {
+      day: 1, id: 'nsydney', lat: 46.2163, lng: -60.2522,
+      time: '09:30', name: 'North Sydney Ferry Terminal', icon: '⛴',
+      tag: 'Day 1 · Ferry Terminal', color: DAY_COLORS[1],
+      details: [['Arrive', '09:30–10:00'], ['Ferry', 'Departs 12:15'], ['Tip', 'Check in all vehicles early']],
+      footer: '☕ Tim Hortons nearby for last chain stop'
+    },
+    {
+      day: 1, id: 'pab', lat: 47.5706, lng: -59.1368,
+      time: '18:45', name: 'Port aux Basques — Arrive', icon: '🛳',
+      tag: 'Day 1 · Ferry Arrives', color: DAY_COLORS[1],
+      details: [['Arrive', '18:45 NL time'], ['Drive', '~210 km to Deer Lake'], ['Duration', '~2.5 hrs'], ['ETA', 'Deer Lake ~9:30 pm']],
+      footer: '🛒 Grab groceries before leaving town!'
+    },
+    {
+      day: 1, id: 'deerlake', lat: 49.1710, lng: -57.4259,
+      time: '21:30', name: 'Deer Lake — Check In', icon: '🏡',
+      tag: 'Day 1 · Stay', color: DAY_COLORS[1],
+      details: [['Arrive', '~9:30–10:00 pm'], ['Stay', 'Jun 27, 28, 29'], ['Groups', '2 Pennells Ln & 6 Olivia Ln'], ['Note', 'Arrange late key access in advance']],
+      footer: '🌙 Rest up — big day tomorrow!'
+    },
+    {
+      day: 2, id: 'tablelands', lat: 49.4777, lng: -57.8533,
+      time: '08:30', name: 'Gros Morne · Tablelands Trail', icon: '🟠',
+      tag: 'Day 2 · UNESCO Park', color: DAY_COLORS[2],
+      details: [['Arrive', '08:30–09:00'], ['Cost', 'FREE — Canada Strong Pass'], ['Trail', '4 km easy · family friendly'], ['Time', '~1.5–2 hrs']],
+      footer: '🆓 FREE for everyone Jun 19–Sep 7'
+    },
+    {
+      day: 2, id: 'rockyharbour', lat: 49.5958, lng: -57.9078,
+      time: '11:00', name: 'Rocky Harbour · Java Jack\'s', icon: '☕',
+      tag: 'Day 2 · Lunch Stop', color: DAY_COLORS[2],
+      details: [['Stop', 'Java Jack\'s café'], ['Time', '~11:00–12:00'], ['Food', 'Coffee, baked goods, light lunch']],
+      footer: '🍽 Book Fisherman\'s Landing for dinner tonight'
+    },
+    {
+      day: 2, id: 'westernbrook', lat: 49.7630, lng: -57.9740,
+      time: '13:00', name: 'Western Brook Pond Boat Tour', icon: '⛵',
+      tag: 'Day 2 · Must-Do', color: DAY_COLORS[2],
+      details: [['Departs', '13:00 (or 09:00 slot)'], ['Cost', '~$35 adult · ~$17 child'], ['Duration', '2 hr tour + 3 km hike each way'], ['Book', 'In advance for group of 29!']],
+      footer: '🏔 2,000ft waterfalls & ancient fjord walls'
+    },
+    {
+      day: 3, id: 'shallowbay', lat: 49.8505, lng: -57.8845,
+      time: '09:30', name: 'Shallow Bay Beach', icon: '🏖',
+      tag: 'Day 3 · Relaxation', color: DAY_COLORS[3],
+      details: [['Time', 'Morning · 09:30–12:00'], ['Cost', 'FREE'], ['Vibe', 'Sandy beach, safe for kids splashing']],
+      footer: '☀️ One of Newfoundland\'s few sandy beaches'
+    },
+    {
+      day: 3, id: 'insectarium', lat: 49.1584, lng: -57.2967,
+      time: '14:00', name: 'Insectarium of Canada', icon: '🦋',
+      tag: 'Day 3 · Kids Activity', color: DAY_COLORS[3],
+      details: [['Time', '~14:00–16:00'], ['Location', 'Reidville, NL (10 min from Deer Lake)'], ['Cost', '~$15 adult · ~$9 child'], ['Kids', 'Butterflies, giant bugs — they LOVE it']],
+      footer: '🌧 Great rainy-day backup too'
+    },
+    {
+      day: 4, id: 'grandfalls', lat: 48.9472, lng: -55.6634,
+      time: '10:30', name: 'Grand Falls-Windsor · Coffee Stop', icon: '☕',
+      tag: 'Day 4 · Midway Stop', color: DAY_COLORS[4],
+      details: [['Drive from DL', '~135 km · 1.5 hrs'], ['Stop', 'Tim Hortons / fuel up'], ['Time', '~10:30–11:00']],
+      footer: '⛽ Fill tanks here — sparse stations ahead'
+    },
+    {
+      day: 4, id: 'twillingate', lat: 49.6557, lng: -54.7922,
+      time: '13:30', name: 'Twillingate — Iceberg Quest Tour', icon: '🧊',
+      tag: 'Day 4 · Must-Do', color: DAY_COLORS[4],
+      details: [['Arrive', '~13:00–13:30'], ['Tour departs', '13:00 or 16:00'], ['Cost', '~$50 adult · ~$30 child'], ['See', 'Icebergs, humpback whales, puffins']],
+      footer: '🎵 Live Newfoundland music on board!'
+    },
+    {
+      day: 4, id: 'longpoint', lat: 49.6792, lng: -54.7672,
+      time: '16:30', name: 'Long Point Lighthouse', icon: '🔦',
+      tag: 'Day 4 · Scenic', color: DAY_COLORS[4],
+      details: [['Time', '~16:30–18:00'], ['Cost', 'FREE'], ['Views', 'Panoramic Notre Dame Bay'], ['Spot', 'Iceberg viewing from cliffs!']],
+      footer: '📸 Best photo spot in Twillingate'
+    },
+    {
+      day: 5, id: 'stjohns', lat: 47.5615, lng: -52.7126,
+      time: '13:00', name: 'St. John\'s — Arrive', icon: '🏙',
+      tag: 'Day 5 · Canada Day! 🍁', color: DAY_COLORS[5],
+      details: [['Drive from Twillingate', '~380 km · 4 hrs'], ['Arrive', '~13:00–14:00'], ['Today', 'Canada Day — free events everywhere!']],
+      footer: '🎆 Fireworks, music & street parties tonight'
+    },
+    {
+      day: 5, id: 'signalhill', lat: 47.5711, lng: -52.6847,
+      time: '14:30', name: 'Signal Hill National Historic Site', icon: '🏴',
+      tag: 'Day 5 · Historic Site', color: DAY_COLORS[5],
+      details: [['Time', '14:30–17:00'], ['Cost', 'FREE — Canada Strong Pass'], ['See', '360° harbour views, Cabot Tower'], ['Activity', 'Fire a musket on guided tour!']],
+      footer: '🆓 Free entry with Canada Strong Pass'
+    },
+    {
+      day: 5, id: 'jellybeanrow', lat: 47.5606, lng: -52.7153,
+      time: '18:00', name: 'Jellybean Row + Canada Day Celebrations', icon: '🎉',
+      tag: 'Day 5 · Evening', color: DAY_COLORS[5],
+      details: [['Time', '18:00 onwards'], ['Cost', 'FREE'], ['See', 'Rainbow Victorian houses, harbour walk'], ['Jul 1', 'Fireworks, live music, street food']],
+      footer: '🍁 Dress in red & white today!'
+    },
+    {
+      day: 6, id: 'capespear', lat: 47.5232, lng: -52.6194,
+      time: '07:30', name: 'Cape Spear Lighthouse', icon: '🌅',
+      tag: 'Day 6 · Early Morning', color: DAY_COLORS[6],
+      details: [['Time', '07:30–09:30'], ['Cost', 'FREE — Canada Strong Pass'], ['Highlight', 'Most easterly point in North America'], ['Tip', 'Arrive for sunrise — first on the continent!']],
+      footer: '☕ Cape Spear Café open from ~09:00'
+    },
+    {
+      day: 6, id: 'therooms', lat: 47.5699, lng: -52.7238,
+      time: '10:00', name: 'The Rooms Museum', icon: '🏛',
+      tag: 'Day 6 · Culture', color: DAY_COLORS[6],
+      details: [['Time', '10:00–12:00'], ['Cost', '~$12 adult · Under 6 FREE'], ['See', 'NL\'s premier cultural museum'], ['Duration', '~2 hrs']],
+      footer: '🎨 Art, history & science under one roof'
+    },
+    {
+      day: 6, id: 'quidividi', lat: 47.5720, lng: -52.6872,
+      time: '12:30', name: 'Quidi Vidi Village + Brewery', icon: '🍺',
+      tag: 'Day 6 · Scenic Village', color: DAY_COLORS[6],
+      details: [['Time', '12:30–14:00'], ['Cost', 'FREE to explore'], ['Try', 'Quidi Vidi Iceberg Beer!'], ['See', 'Colourful fishing stages & harbour']],
+      footer: '🚗 Leave for Argentia by 14:30!'
+    },
+    {
+      day: 6, id: 'argentia', lat: 47.2973, lng: -53.9839,
+      time: '16:00', name: 'Argentia Ferry Terminal', icon: '⛴',
+      tag: 'Day 6 · Return Ferry', color: DAY_COLORS[6],
+      details: [['Arrive', '15:30–16:00 (allow time!)'], ['Ferry departs', '17:00 sharp'], ['Drive from SJ', '~130 km · 1.5 hrs'], ['Returns', 'North Sydney Jul 3 · 09:00']],
+      footer: '🌙 Overnight sailing — book cabins!'
+    }
+  ];
+
+  var ROUTES = {
+    1: [[44.6488,-63.5752],[46.2163,-60.2522],[47.5706,-59.1368],[49.1710,-57.4259]],
+    2: [[49.1710,-57.4259],[49.4777,-57.8533],[49.5958,-57.9078],[49.7630,-57.9740]],
+    3: [[49.1710,-57.4259],[49.8505,-57.8845],[49.1584,-57.2967]],
+    4: [[49.1710,-57.4259],[48.9472,-55.6634],[49.6557,-54.7922],[49.6792,-54.7672]],
+    5: [[49.6557,-54.7922],[48.9472,-55.6634],[47.5615,-52.7126],[47.5711,-52.6847]],
+    6: [[47.5615,-52.7126],[47.5232,-52.6194],[47.5699,-52.7238],[47.5720,-52.6872],[47.2973,-53.9839]]
+  };
+
+  var allPolylines = {};
+  var allMarkers = [];
+  var currentDay = 'all';
+
+  function makeIcon(stop) {
+    var div = document.createElement('div');
+    div.style.cssText = 'width:34px;height:34px;border-radius:50%;background:' + stop.color +
+      ';display:flex;align-items:center;justify-content:center;font-size:15px;' +
+      'border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.25);cursor:pointer;';
+    div.textContent = stop.icon;
+    return L.divIcon({ html: div.outerHTML, className: '', iconSize: [34,34], iconAnchor: [17,17], popupAnchor: [0,-20] });
+  }
+
+  function makePopup(stop) {
+    var rows = stop.details.map(function(d) {
+      return '<div class="popup-row"><span>' + d[0] + '</span><span>' + d[1] + '</span></div>';
+    }).join('');
+    return '<div class="popup-inner"><div class="popup-tag">' + stop.tag + '</div>' +
+      '<div class="popup-name">' + stop.icon + ' ' + stop.name + '</div>' +
+      '<div class="popup-row"><span>Time</span><span><strong>' + stop.time + '</strong></span></div>' +
+      rows + '</div><div class="popup-footer">' + stop.footer + '</div>';
+  }
+
+  // Draw all routes
+  Object.keys(ROUTES).forEach(function(d) {
+    var coords = ROUTES[d].map(function(c) { return [c[0], c[1]]; });
+    var pl = L.polyline(coords, {
+      color: DAY_COLORS[parseInt(d)], weight: 4, opacity: 0.85,
+      dashArray: d == 1 ? null : null
+    }).addTo(map);
+    allPolylines[d] = pl;
+  });
+
+  // Add ferry line (dashed, different style)
+  var ferryLine = L.polyline([[46.2163,-60.2522],[47.5706,-59.1368]], {
+    color: '#e8923a', weight: 3, opacity: 0.7, dashArray: '10,8'
+  }).addTo(map);
+  var ferryReturn = L.polyline([[47.2973,-53.9839],[46.2163,-60.2522]], {
+    color: '#6a1b9a', weight: 3, opacity: 0.7, dashArray: '10,8'
+  }).addTo(map);
+
+  // Add markers
+  STOPS.forEach(function(stop, idx) {
+    var marker = L.marker([stop.lat, stop.lng], { icon: makeIcon(stop) })
+      .addTo(map)
+      .bindPopup(makePopup(stop), { maxWidth: 260 });
+    marker._stopData = stop;
+    marker._idx = idx;
+    allMarkers.push(marker);
+  });
+
+  // Fit map to all stops
+  var allCoords = STOPS.map(function(s) { return [s.lat, s.lng]; });
+  map.fitBounds(allCoords, { padding: [30, 30] });
+
+  // Build timeline
+  function buildTimeline(dayFilter) {
+    var tb = document.getElementById('timeline-body');
+    tb.innerHTML = '';
+    var sub = document.getElementById('tl-subtitle');
+
+    var filtered = dayFilter === 'all' ? STOPS : STOPS.filter(function(s) { return s.day === dayFilter; });
+    var dayLabels = { 1: 'Jun 27 · Day 1', 2: 'Jun 28 · Day 2', 3: 'Jun 29 · Day 3', 4: 'Jun 30 · Day 4', 5: 'Jul 1 · Day 5 · Canada Day!', 6: 'Jul 2 · Day 6' };
+
+    sub.textContent = dayFilter === 'all' ? 'All stops · 7 days' : (dayLabels[dayFilter] || '');
+
+    var lastDay = null;
+    filtered.forEach(function(stop, i) {
+      if (dayFilter === 'all' && stop.day !== lastDay) {
+        lastDay = stop.day;
+        var lbl = document.createElement('div');
+        lbl.className = 'tl-day-label';
+        lbl.style.background = DAY_COLORS[stop.day];
+        lbl.textContent = dayLabels[stop.day];
+        tb.appendChild(lbl);
+      }
+      var isLast = i === filtered.length - 1;
+      var el = document.createElement('div');
+      el.className = 'tl-stop';
+      el.dataset.stopId = stop.id;
+      el.innerHTML = '<div class="tl-left"><div class="tl-dot" style="color:' + stop.color + ';background:' + stop.color + '"></div>' +
+        (isLast ? '' : '<div class="tl-line"></div>') + '</div>' +
+        '<div class="tl-right"><div class="tl-time">' + stop.time + '</div>' +
+        '<div class="tl-name">' + stop.icon + ' ' + stop.name + '</div>' +
+        '<div class="tl-desc">' + (stop.details[0] ? stop.details[0][1] : '') + '</div></div>';
+      el.addEventListener('click', function() {
+        var m = allMarkers.find(function(mk) { return mk._stopData.id === stop.id; });
+        if (m) { map.setView([stop.lat, stop.lng], 10, { animate: true }); m.openPopup(); }
+        document.querySelectorAll('.tl-stop').forEach(function(e) { e.classList.remove('active-stop'); });
+        el.classList.add('active-stop');
+      });
+      tb.appendChild(el);
+    });
+  }
+
+  window.showDay = function(day) {
+    currentDay = day;
+    document.querySelectorAll('.day-tab').forEach(function(t) { t.classList.remove('active'); });
+    var tabs = document.querySelectorAll('.day-tab');
+    if (day === 'all') { tabs[0].classList.add('active'); }
+    else { tabs[day].classList.add('active'); }
+
+    // Show/hide polylines
+    Object.keys(allPolylines).forEach(function(d) {
+      if (day === 'all' || parseInt(d) === day) {
+        allPolylines[d].setStyle({ opacity: 0.85, weight: 4 });
+      } else {
+        allPolylines[d].setStyle({ opacity: 0.08, weight: 2 });
+      }
+    });
+    if (day === 'all') {
+      ferryLine.setStyle({ opacity: 0.7 });
+      ferryReturn.setStyle({ opacity: 0.7 });
+    } else if (day === 1) {
+      ferryLine.setStyle({ opacity: 0.8 });
+      ferryReturn.setStyle({ opacity: 0.08 });
+    } else if (day === 6) {
+      ferryLine.setStyle({ opacity: 0.08 });
+      ferryReturn.setStyle({ opacity: 0.8 });
+    } else {
+      ferryLine.setStyle({ opacity: 0.08 });
+      ferryReturn.setStyle({ opacity: 0.08 });
+    }
+
+    // Show/hide markers
+    allMarkers.forEach(function(m) {
+      var el = m.getElement();
+      if (el) { el.style.opacity = (day === 'all' || m._stopData.day === day) ? '1' : '0.2'; }
+    });
+
+    // Fit bounds
+    if (day === 'all') {
+      map.fitBounds(allCoords, { padding: [30, 30] });
+    } else {
+      var dayStops = STOPS.filter(function(s) { return s.day === day; });
+      if (day === 1) dayStops = dayStops.concat([{lat:46.2163,lng:-60.2522},{lat:47.5706,lng:-59.1368}]);
+      var bounds = dayStops.map(function(s) { return [s.lat || s.lat, s.lng || s.lng]; });
+      map.fitBounds(bounds, { padding: [50, 50] });
+    }
+
+    buildTimeline(day);
+  };
+
+  buildTimeline('all');
+})();
+</script>
+
+<!-- ═══════════════════════════ DAY BY DAY ═══════════════════════════ -->
+<div class="days-wrapper">
+  <div class="days-header">
+    <h2 class="section-title">Day-by-Day <em>Itinerary</em></h2>
+    <div class="section-rule"></div>
+  </div>
+
+  <!-- ──────── DAY 1 ──────── -->
+  <div class="day-block">
+    <div class="day-label">
+      <div class="day-circle"><div class="day-circle-num">27</div><div class="day-circle-month">Jun</div></div>
+      <div class="day-heading">
+        <h3>The Great Crossing 🌊</h3>
+        <p>Halifax → North Sydney → Port aux Basques → Deer Lake</p>
+      </div>
+    </div>
+    <div class="day-grid">
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-scenic">Drive</span>
+          <h4>Halifax → North Sydney</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">Early morning start · ~2.5 hrs</span></div>
+          <div class="activity-row"><span class="activity-row-icon">📏</span><span class="activity-row-label">Distance</span><span class="activity-row-val">~280 km via Hwy 104</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Cost</span><span class="activity-row-val">Fuel only</span></div>
+          <div class="activity-row"><span class="activity-row-icon">⚠️</span><span class="activity-row-label">Note</span><span class="activity-row-val">Arrive terminal by 10:00 for 12:15 ferry — coordinate all 4–6 vehicles</span></div>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-scenic">On the Ferry</span>
+          <h4>Marine Atlantic Cafeteria</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">12:15 – 18:45 (6.5 hrs)</span></div>
+          <div class="activity-row"><span class="activity-row-icon">🍽️</span><span class="activity-row-label">Food</span><span class="activity-row-val">Cafeteria, snack bar & lounge on board</span></div>
+          <div class="activity-row"><span class="activity-row-icon">🎮</span><span class="activity-row-label">Kids</span><span class="activity-row-val">Kids' play area, video games, deck viewing</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Meals</span><span class="activity-row-val">~$12–18 per person on board</span></div>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-scenic">Scenic Stop</span>
+          <h4>Codroy Valley</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">~10–15 min · right off the ferry</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Cost</span><span class="activity-row-val price-free">FREE</span></div>
+          <div class="activity-row"><span class="activity-row-icon">📍</span><span class="activity-row-label">Location</span><span class="activity-row-val">~10 min north of Port aux Basques on Trans-Canada</span></div>
+          <div class="activity-row"><span class="activity-row-icon">⭐</span><span class="activity-row-label">Highlight</span><span class="activity-row-val">Stunning flat river valley with the Long Range Mountains as a backdrop — your first real taste of Newfoundland scenery. Great photo stop!</span></div>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-food">Midway Stop</span>
+          <h4>Corner Brook</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">~20–30 min · 1.5 hrs after ferry</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Cost</span><span class="activity-row-val">Fuel & food only</span></div>
+          <div class="activity-row"><span class="activity-row-icon">📍</span><span class="activity-row-label">Location</span><span class="activity-row-val">Right on Trans-Canada, ~220 km from Port aux Basques</span></div>
+          <div class="activity-row"><span class="activity-row-icon">⭐</span><span class="activity-row-label">Highlight</span><span class="activity-row-val">NL's second-largest city. Grab fuel, late dinner, and washroom break — ideal pit stop before the final 60 km push to Deer Lake.</span></div>
+          <div class="activity-row"><span class="activity-row-icon">🍽️</span><span class="activity-row-label">Food</span><span class="activity-row-val">Tim Hortons, McDonald's & Irving Big Stop all available here</span></div>
+        </div>
+      </div>
+
+      <div class="side-cards">
+        <div class="food-stop-card">
+          <span class="tag-food-inline">☕ Coffee Stop</span>
+          <h5>Tim Hortons — North Sydney</h5>
+          <p>Stock up before boarding. Grab sandwiches, Timbits & drinks for the kids — last chain stop before the ferry.</p>
+        </div>
+        <div class="clothing-card">
+          <h5>👗 What to Wear — Day 1</h5>
+          <div class="clothing-item"><div class="clothing-dot"></div>Comfortable travel layers</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Light jacket for ferry deck</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Slip-on shoes for vehicle loading</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Kids: extra change of clothes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider"></div>
+
+  <!-- ──────── DAY 2 ──────── -->
+  <div class="day-block">
+    <div class="day-label">
+      <div class="day-circle"><div class="day-circle-num">28</div><div class="day-circle-month">Jun</div></div>
+      <div class="day-heading">
+        <h3>Gros Morne National Park 🏔️</h3>
+        <p>Deer Lake — UNESCO World Heritage Site · FREE entry all summer</p>
+      </div>
+    </div>
+    <div class="day-grid">
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-boat">Boat Tour</span>
+          <h4>Western Brook Pond Fjord Tour</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">9:00 am or 1:00 pm (2 hr tour + 3 km hike each way)</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Cost</span><span class="activity-row-val"><span class="price-paid">~$35 adult · ~$17 child</span><br><span class="price-free">Park entry FREE ✓</span></span></div>
+          <div class="activity-row"><span class="activity-row-icon">📍</span><span class="activity-row-label">Location</span><span class="activity-row-val">Rocky Harbour, NL</span></div>
+          <div class="activity-row"><span class="activity-row-icon">⭐</span><span class="activity-row-label">Highlight</span><span class="activity-row-val">2,000 ft waterfalls, billion-year-old cliffs, landlocked fjord — breathtaking for all ages</span></div>
+          <div class="activity-row"><span class="activity-row-icon">📞</span><span class="activity-row-label">Book</span><span class="activity-row-val">Reserve in advance for a group of 29!</span></div>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-nature">Hike</span>
+          <h4>Tablelands Trail</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">Afternoon · ~1.5–2 hrs</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Cost</span><span class="activity-row-val price-free">FREE (Canada Strong Pass)</span></div>
+          <div class="activity-row"><span class="activity-row-icon">🥾</span><span class="activity-row-label">Difficulty</span><span class="activity-row-val">Easy · 4 km · stroller-friendly start</span></div>
+          <div class="activity-row"><span class="activity-row-icon">⭐</span><span class="activity-row-label">Highlight</span><span class="activity-row-val">Walk on the Earth's ancient mantle — rust-orange rock from the planet's interior, great for kids</span></div>
+        </div>
+      </div>
+
+      <div class="side-cards">
+        <div class="food-stop-card">
+          <span class="tag-food-inline">☕ Coffee & Lunch</span>
+          <h5>Java Jack's — Rocky Harbour</h5>
+          <p>Local favourite near the park. Coffee, baked goods & light lunch. Great for a group stop.</p>
+        </div>
+        <div class="food-stop-card">
+          <span class="tag-food-inline">🍽️ Dinner</span>
+          <h5>Fisherman's Landing — Rocky Harbour</h5>
+          <p>Classic Newfoundland seafood. Fish & chips, cod au gratin, seafood chowder. Book ahead for 29 people.</p>
+        </div>
+        <div class="clothing-card">
+          <h5>👗 Gros Morne Clothing</h5>
+          <div class="clothing-item"><div class="clothing-dot"></div>Waterproof hiking boots</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Rain jacket (always)</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Warm fleece or sweater</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Sunscreen & hat</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Bug spray (June mosquitoes!)</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Kids: waterproof pants</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider"></div>
+
+  <!-- ──────── DAY 3 ──────── -->
+  <div class="day-block">
+    <div class="day-label">
+      <div class="day-circle"><div class="day-circle-num">29</div><div class="day-circle-month">Jun</div></div>
+      <div class="day-heading">
+        <h3>Iceberg Capital of the World 🧊</h3>
+        <p>Drive from Deer Lake · Twillingate — icebergs, whales & lighthouse views</p>
+      </div>
+    </div>
+    <div class="day-grid">
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-boat">⭐ Must-Do Boat Tour</span>
+          <h4>Iceberg Quest Ocean Tours</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Departs</span><span class="activity-row-val">9:30 am · 1:00 pm · 4:00 pm (2 hr tour)</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Cost</span><span class="activity-row-val"><span class="price-paid">~$50 adult · ~$30 child (approx)</span></span></div>
+          <div class="activity-row"><span class="activity-row-icon">⭐</span><span class="activity-row-label">See</span><span class="activity-row-val">12,000-year-old icebergs, humpback whales, puffins, bald eagles, sea arches</span></div>
+          <div class="activity-row"><span class="activity-row-icon">🎵</span><span class="activity-row-label">Bonus</span><span class="activity-row-val">Live Newfoundland folk music & screech-in ceremony on board!</span></div>
+          <div class="activity-row"><span class="activity-row-icon">📞</span><span class="activity-row-label">Book</span><span class="activity-row-val">icebergquest.com — essential for a group of 29</span></div>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-scenic">Scenic Walk</span>
+          <h4>Long Point Lighthouse</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">Afternoon · 1.5 hrs</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Cost</span><span class="activity-row-val price-free">FREE</span></div>
+          <div class="activity-row"><span class="activity-row-icon">⭐</span><span class="activity-row-label">Highlight</span><span class="activity-row-val">Stunning panoramic views of Notre Dame Bay. Iceberg spotting from the cliffs!</span></div>
+        </div>
+      </div>
+
+      <div class="side-cards">
+        <div class="food-stop-card">
+          <span class="tag-food-inline">☕ Midway Coffee Stop</span>
+          <h5>Tim Hortons — Grand Falls-Windsor</h5>
+          <p>Halfway point on the drive (135 km from Deer Lake). Perfect stretch & fuel stop. Washrooms for the kids!</p>
+        </div>
+        <div class="food-stop-card">
+          <span class="tag-food-inline">🍽️ Lunch / Dinner</span>
+          <h5>Georgie's Restaurant — Twillingate</h5>
+          <p>The best restaurant in town. Fresh local seafood, chowder, fish cakes. Great atmosphere and very family-friendly.</p>
+        </div>
+        <div class="clothing-card">
+          <h5>👗 Twillingate Clothing</h5>
+          <div class="clothing-item"><div class="clothing-dot"></div>Warm windproof jacket (mandatory on boat)</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Gloves & hat for boat tour</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Layers — ocean can be 5° cooler</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Non-slip shoes for boat deck</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Sunglasses (glare off icebergs!)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider"></div>
+
+  <!-- ──────── DAY 4 ──────── -->
+  <div class="day-block">
+    <div class="day-label">
+      <div class="day-circle"><div class="day-circle-num">30</div><div class="day-circle-month">Jun</div></div>
+      <div class="day-heading">
+        <h3>Welcome to St. John's 🏙️</h3>
+        <p>Drive from Twillingate · explore the city · eve of Canada Day</p>
+      </div>
+    </div>
+    <div class="day-grid">
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-history">National Historic Site</span>
+          <h4>Signal Hill</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">Afternoon · 2–3 hrs</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Cost</span><span class="activity-row-val"><span class="price-free">FREE (Canada Strong Pass)</span></span></div>
+          <div class="activity-row"><span class="activity-row-icon">📍</span><span class="activity-row-label">Location</span><span class="activity-row-val">230 Signal Hill Rd, St. John's</span></div>
+          <div class="activity-row"><span class="activity-row-icon">⭐</span><span class="activity-row-label">Highlight</span><span class="activity-row-val">360° views of St. John's harbour, Cabot Tower, Marconi's first transatlantic wireless signal site. Fire a musket at guided tour!</span></div>
+          <div class="activity-row"><span class="activity-row-icon">🥾</span><span class="activity-row-label">Hike</span><span class="activity-row-val">North Head Trail — 1.7 km, stunning coastal views</span></div>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-scenic">Most Photographed Street</span>
+          <h4>Jellybean Row + Downtown</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">Evening stroll · 1–2 hrs</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Cost</span><span class="activity-row-val price-free">FREE</span></div>
+          <div class="activity-row"><span class="activity-row-icon">⭐</span><span class="activity-row-label">Highlight</span><span class="activity-row-val">Rainbow-coloured Victorian row houses. Walk Gower St & Victoria St. Kids love the candy-coloured buildings!</span></div>
+          <div class="activity-row"><span class="activity-row-icon">🍁</span><span class="activity-row-label">Tomorrow</span><span class="activity-row-val">Canada Day! Get your red & white ready for tomorrow's celebrations.</span></div>
+        </div>
+      </div>
+
+      <div class="side-cards">
+        <div class="food-stop-card">
+          <span class="tag-food-inline">☕ Morning Coffee</span>
+          <h5>Hava Java — St. John's</h5>
+          <p>Beloved local coffee institution. Multiple locations. Perfect pit stop after the long 4-hour drive from Twillingate.</p>
+        </div>
+        <div class="food-stop-card">
+          <span class="tag-food-inline">🍽️ Dinner</span>
+          <h5>Chinched Bistro or Hungry Heart Café</h5>
+          <p>Book well in advance — St. John's fills up around Canada Day. Local Newfoundland cuisine with great atmosphere.</p>
+        </div>
+        <div class="drive-card">
+          <h5>🚗 Today's Drive</h5>
+          <div class="drive-row"><span>Twillingate → St. John's</span><span>~380 km</span></div>
+          <div class="drive-row"><span>Drive time</span><span>~4 hours</span></div>
+          <div class="drive-row"><span>Leave by</span><span>8:00–9:00 am</span></div>
+          <a class="drive-btn" href="https://www.google.com/maps/dir/Twillingate,+NL/St.+John's,+NL" target="_blank">🗺 Open in Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider"></div>
+
+  <!-- ──────── DAY 5 ──────── -->
+  <div class="day-block">
+    <div class="day-label">
+      <div class="day-circle"><div class="day-circle-num">1</div><div class="day-circle-month">Jul</div></div>
+      <div class="day-heading">
+        <h3>Canada Day in St. John's 🏙️ <span class="canada-day-badge">🍁 Canada Day!</span></h3>
+        <p>Cape Spear sunrise · downtown celebrations · fireworks</p>
+      </div>
+    </div>
+    <div class="day-grid">
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-nature">Wildlife</span>
+          <h4>Witless Bay — Puffin Viewing</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">Mid-morning · ~1.5–2 hrs (after Cape Spear)</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Cost</span><span class="activity-row-val"><span class="price-paid">~$25–35 adult · ~$15 child (boat tour)</span></span></div>
+          <div class="activity-row"><span class="activity-row-icon">📍</span><span class="activity-row-label">Location</span><span class="activity-row-val">Witless Bay, NL — ~30 min south of St. John's</span></div>
+          <div class="activity-row"><span class="activity-row-icon">⭐</span><span class="activity-row-label">Highlight</span><span class="activity-row-val">One of the largest Atlantic puffin colonies in North America! Thousands of puffins, humpback whales & murres on the same boat tour. Kids absolutely love it.</span></div>
+          <div class="activity-row"><span class="activity-row-icon">📞</span><span class="activity-row-label">Book</span><span class="activity-row-val">O'Brien's Whale & Bird Tours — reserve in advance for 29 people!</span></div>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-history">National Historic Site</span>
+          <h4>Cape Spear Lighthouse</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">Early morning (7–8am for sunrise!) · 2 hrs</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Cost</span><span class="activity-row-val price-free">FREE (Canada Strong Pass)</span></div>
+          <div class="activity-row"><span class="activity-row-icon">⭐</span><span class="activity-row-label">Highlight</span><span class="activity-row-val">Most easterly point in North America. First sunrise on the continent on Canada Day — absolutely magical for the group!</span></div>
+          <div class="activity-row"><span class="activity-row-icon">☕</span><span class="activity-row-label">Café</span><span class="activity-row-val">Cape Spear Café on site — "easternmost café in North America"</span></div>
+        </div>
+      </div>
+
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-scenic">Canada Day Celebrations</span>
+          <h4>Downtown St. John's + Fireworks</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">Afternoon & evening</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Cost</span><span class="activity-row-val price-free">Mostly FREE ✓</span></div>
+          <div class="activity-row"><span class="activity-row-icon">🎆</span><span class="activity-row-label">Events</span><span class="activity-row-val">Free concerts, fireworks, street performers and flag-waving — one of the best Canada Day celebrations in the country!</span></div>
+          <div class="activity-row"><span class="activity-row-icon">👗</span><span class="activity-row-label">Dress</span><span class="activity-row-val">Red & white! The whole city is decked out.</span></div>
+        </div>
+      </div>
+
+      <div class="side-cards">
+        <div class="drive-card">
+          <h5>🗺 Morning Circuit</h5>
+          <div class="drive-row"><span>Cape Spear sunrise</span><span>7:00–9:00 am</span></div>
+          <div class="drive-row"><span>Drive to Witless Bay</span><span>~25 min south</span></div>
+          <div class="drive-row"><span>Puffin boat tour</span><span>~10:00 am</span></div>
+          <div class="drive-row"><span>Back to St. John's</span><span>~12:30 pm</span></div>
+          <a class="drive-btn" href="https://www.google.com/maps/dir/Cape+Spear,+NL/Witless+Bay,+NL/St.+John's,+NL" target="_blank">🗺 Open Circuit in Maps</a>
+        </div>
+        <div class="food-stop-card">
+          <span class="tag-food-inline">🍽️ Canada Day Dinner</span>
+          <h5>Chinched Bistro or Hungry Heart Café</h5>
+          <p>Book well in advance — St. John's is packed on July 1st. Local Newfoundland cuisine with great atmosphere.</p>
+        </div>
+        <div class="clothing-card">
+          <h5>👗 St. John's Clothing</h5>
+          <div class="clothing-item"><div class="clothing-dot"></div>Comfortable walking shoes</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Light jacket for harbour wind</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Canada Day red & white!</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Warm layers for evening fireworks</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="day-divider"></div>
+
+  <!-- ──────── DAY 6 ──────── -->
+  <div class="day-block">
+    <div class="day-label">
+      <div class="day-circle"><div class="day-circle-num">2</div><div class="day-circle-month">Jul</div></div>
+      <div class="day-heading">
+        <h3>St. John's Morning + Farewell Ferry ⛴</h3>
+        <p>Explore the city · depart Argentia 17:00</p>
+      </div>
+    </div>
+    <div class="day-grid">
+      <div class="activity-card">
+        <div class="activity-card-header">
+          <span class="activity-tag tag-culture">Museum</span>
+          <h4>The Rooms + Quidi Vidi Village</h4>
+        </div>
+        <div class="activity-card-body">
+          <div class="activity-row"><span class="activity-row-icon">⏱</span><span class="activity-row-label">Time</span><span class="activity-row-val">Morning · 2 hrs each</span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">The Rooms</span><span class="activity-row-val"><span class="price-paid">~$12 adult · Under 6 FREE</span></span></div>
+          <div class="activity-row"><span class="activity-row-icon">💰</span><span class="activity-row-label">Quidi Vidi</span><span class="activity-row-val price-free">FREE to explore</span></div>
+          <div class="activity-row"><span class="activity-row-icon">⭐</span><span class="activity-row-label">Highlight</span><span class="activity-row-val">The Rooms is NL's premier cultural space. Quidi Vidi is a picturesque fishing village — try Iceberg Beer at the brewery!</span></div>
+          <div class="activity-row"><span class="activity-row-icon">⚠️</span><span class="activity-row-label">Reminder</span><span class="activity-row-val">Leave St. John's by 14:30 to reach Argentia (130 km) by 16:30 for 17:00 ferry</span></div>
+        </div>
+      </div>
+
+      <div class="side-cards">
+        <div class="food-stop-card">
+          <span class="tag-food-inline">🍽️ Farewell Lunch</span>
+          <h5>Duke of Duckworth — Downtown St. John's</h5>
+          <p>Classic Newfoundland pub. Fish & chips, fish cakes, toutons. Perfect last Newfoundland meal before the ferry!</p>
+        </div>
+        <div class="drive-card">
+          <h5>🚗 Final Drive to Ferry</h5>
+          <div class="drive-row"><span>St. John's → Argentia</span><span>~130 km</span></div>
+          <div class="drive-row"><span>Drive time</span><span>~1.5 hrs</span></div>
+          <div class="drive-row"><span>Arrive by</span><span>15:00 latest</span></div>
+          <div class="drive-row"><span>Ferry departs</span><span>17:00 sharp</span></div>
+          <a class="drive-btn" href="https://www.google.com/maps/dir/St.+John's,+NL/Argentia,+NL" target="_blank">🗺 Open in Maps</a>
+        </div>
+        <div class="clothing-card">
+          <h5>👗 St. John's Clothing</h5>
+          <div class="clothing-item"><div class="clothing-dot"></div>Comfortable walking shoes</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Light jacket for harbour wind</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Canada Day red & white!</div>
+          <div class="clothing-item"><div class="clothing-dot"></div>Warm layers for evening</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ ACCOMMODATION ═══════════════════════════ -->
+<style>
+  .accom-location-block { margin-bottom: 2.5rem; }
+  .accom-location-header {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 1.2rem;
+    padding-bottom: 1rem; border-bottom: 2px solid var(--cream-dark);
+  }
+  .accom-location-icon {
+    width: 48px; height: 48px; border-radius: 12px; background: var(--navy);
+    display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+  }
+  .accom-location-header h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--navy); margin: 0; }
+  .accom-location-header p { font-size: 0.8rem; color: var(--text-light); margin: 3px 0 0; }
+  .accom-subgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .accom-group-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--navy); color: var(--amber-light);
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 100px; margin-bottom: 8px;
+  }
+  .accom-map-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--cream-dark); color: var(--navy);
+    font-size: 11px; font-weight: 700; padding: 5px 12px;
+    border-radius: 100px; text-decoration: none; margin-top: 10px;
+    transition: background 0.2s;
+  }
+  .accom-map-btn:hover { background: var(--stone); }
+  .accom-alert {
+    background: #fff8e1; border: 1px solid #ffe082; border-left: 4px solid #f9a825;
+    border-radius: 10px; padding: 10px 14px; margin-top: 1rem; font-size: 0.82rem; color: #5d4037;
+  }
+  .accom-alert strong { color: #e65100; }
+</style>
+<section class="accom-section">
+  <div class="accom-inner">
+    <h2 class="section-title">Where You'll <em>Stay</em></h2>
+    <div class="section-rule"></div>
+    <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:2rem;">8 families split across <strong>9 properties</strong> in 3 locations — 2 groups in Deer Lake, 4 groups in Twillingate, 3 groups in the Conception Bay area.</p>
+
+    <!-- DEER LAKE -->
+    <div class="accom-location-block">
+      <div class="accom-location-header">
+        <div class="accom-location-icon">🏔️</div>
+        <div>
+          <h3>Deer Lake — 2 Groups</h3>
+          <p>📅 Nights of Jun 27 & 28 &nbsp;·&nbsp; Gateway to Gros Morne National Park</p>
+        </div>
+      </div>
+      <div class="accom-subgrid">
+        <div class="accom-card">
+          <div class="accom-group-badge">👨‍👩‍👧 Group 1</div>
+          <div class="accom-name">2 Pennells Lane</div>
+          <div class="accom-location">📍 Deer Lake, NL &nbsp;A8A 1Y4</div>
+          <div class="accom-detail">🏡 Private home / cottage</div>
+          <div class="accom-detail">🔑 Late check-in needed — ferry arrives Port aux Basques 18:45, expect 9–10 pm arrival</div>
+          <div class="accom-detail">🚗 ~20 min to Rocky Harbour & Gros Morne trails</div>
+          <a class="accom-map-btn" href="https://maps.app.goo.gl/4D5HT2VtvZ4QCSTi9" target="_blank">🗺 View on Maps</a>
+        </div>
+        <div class="accom-card">
+          <div class="accom-group-badge">👨‍👩‍👧 Group 2</div>
+          <div class="accom-name">6 Olivia Lane</div>
+          <div class="accom-location">📍 Deer Lake, NL</div>
+          <div class="accom-detail">🏡 Private home / cottage</div>
+          <div class="accom-detail">🔑 Coordinate late check-in — same late arrival night of Jun 27</div>
+          <div class="accom-detail">🚗 ~20 min to Rocky Harbour & Gros Morne trails</div>
+          <a class="accom-map-btn" href="https://maps.app.goo.gl/nVhMJcUuGxryWTiU9" target="_blank">🗺 View on Maps</a>
+        </div>
+      </div>
+      <div class="accom-alert">⚠️ <strong>Late arrival night of Jun 27:</strong> Ferry arrives Port aux Basques at 18:45, then it's a 2.5 hr drive. You'll reach Deer Lake around 9:30–10:00 pm. Contact both properties in advance to arrange late check-in or key lockbox access. Stock cars with dinner/snacks before or after the ferry.
+      </div>
+    </div>
+
+    <!-- TWILLINGATE -->
+    <div class="accom-location-block">
+      <div class="accom-location-header">
+        <div class="accom-location-icon">🧊</div>
+        <div>
+          <h3>Twillingate — 4 Groups</h3>
+          <p>📅 Night of Jun 29 &nbsp;·&nbsp; Iceberg Capital of the World</p>
+        </div>
+      </div>
+      <div class="accom-subgrid">
+        <div class="accom-card">
+          <div class="accom-group-badge">👨‍👩‍👧 Group 1</div>
+          <div class="accom-name">Twillingate Property 1</div>
+          <div class="accom-location">📍 Twillingate, NL</div>
+          <div class="accom-detail">🔑 Confirm check-in after ~3 hr drive from Deer Lake</div>
+          <div class="accom-detail">⛵ Iceberg Quest boat tour departs nearby</div>
+          <a class="accom-map-btn" href="https://maps.app.goo.gl/gKNvmRuWwkpofjXy6" target="_blank">🗺 View on Maps</a>
+        </div>
+        <div class="accom-card">
+          <div class="accom-group-badge">👨‍👩‍👧 Group 2</div>
+          <div class="accom-name">Twillingate Property 2</div>
+          <div class="accom-location">📍 Twillingate, NL</div>
+          <div class="accom-detail">🔑 Confirm check-in after ~3 hr drive from Deer Lake</div>
+          <div class="accom-detail">⛵ Book boat tour time slot early to sync all 4 groups</div>
+          <a class="accom-map-btn" href="https://maps.app.goo.gl/wfexDBJbaSt5UrfcA" target="_blank">🗺 View on Maps</a>
+        </div>
+        <div class="accom-card">
+          <div class="accom-group-badge">👨‍👩‍👧 Group 3</div>
+          <div class="accom-name">Twillingate Property 3</div>
+          <div class="accom-location">📍 Twillingate, NL</div>
+          <div class="accom-detail">🔑 All 4 groups arriving same day — coordinate convoy</div>
+          <div class="accom-detail">🦞 Plan a group dinner — Georgie's or Captain's Pub</div>
+          <a class="accom-map-btn" href="https://maps.app.goo.gl/GbprkVZWkV5hxwXW8" target="_blank">🗺 View on Maps</a>
+        </div>
+        <div class="accom-card">
+          <div class="accom-group-badge">👨‍👩‍👧 Group 4</div>
+          <div class="accom-name">Twillingate Property 4</div>
+          <div class="accom-location">📍 Twillingate, NL</div>
+          <div class="accom-detail">🔑 Only 1 night — pack light and check-out by 9 am for St. John's drive</div>
+          <div class="accom-detail">🚗 St. John's drive is ~4 hrs — leave by 8:30 am</div>
+          <a class="accom-map-btn" href="https://maps.app.goo.gl/ba2tdzpdcXELWWJXA" target="_blank">🗺 View on Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ST JOHN'S / CONCEPTION BAY -->
+    <div class="accom-location-block">
+      <div class="accom-location-header">
+        <div class="accom-location-icon">🏙️</div>
+        <div>
+          <h3>Conception Bay Area — 3 Groups</h3>
+          <p>📅 Nights of Jun 30 & Jul 1 &nbsp;·&nbsp; ~45–60 min drive to St. John's city centre</p>
+        </div>
+      </div>
+      <div class="accom-subgrid">
+        <div class="accom-card">
+          <div class="accom-group-badge">👨‍👩‍👧 Group 1</div>
+          <div class="accom-name">29 Pond Side Road</div>
+          <div class="accom-location">📍 Carbonear, NL &nbsp;A1Y 1A5</div>
+          <div class="accom-detail">🏡 Private home · Carbonear area</div>
+          <div class="accom-detail">🚗 ~1 hr drive to downtown St. John's</div>
+          <div class="accom-detail">⛴ ~1.5 hrs to Argentia ferry terminal</div>
+          <a class="accom-map-btn" href="https://maps.app.goo.gl/sCx5C5JtFkDiamwQA" target="_blank">🗺 View on Maps</a>
+        </div>
+        <div class="accom-card">
+          <div class="accom-group-badge">👨‍👩‍👧 Group 2</div>
+          <div class="accom-name">5 Bemisters Hill</div>
+          <div class="accom-location">📍 Victoria, NL &nbsp;A1Y 1A8</div>
+          <div class="accom-detail">🏡 Private home · Victoria, NL</div>
+          <div class="accom-detail">🚗 ~55 min drive to downtown St. John's</div>
+          <div class="accom-detail">⛴ ~1.5 hrs to Argentia ferry terminal</div>
+          <a class="accom-map-btn" href="https://maps.app.goo.gl/f6R1JqAsRPDx6PTAA" target="_blank">🗺 View on Maps</a>
+        </div>
+        <div class="accom-card">
+          <div class="accom-group-badge">👨‍👩‍👧 Group 3</div>
+          <div class="accom-name">260 Conception Bay Hwy</div>
+          <div class="accom-location">📍 Coley's Point South, NL &nbsp;A0A 1X0</div>
+          <div class="accom-detail">🏡 Private home · Conception Bay South</div>
+          <div class="accom-detail">🚗 ~45 min drive to downtown St. John's</div>
+          <div class="accom-detail">⛴ ~1.5–2 hrs to Argentia ferry terminal</div>
+          <a class="accom-map-btn" href="https://maps.app.goo.gl/QNJoGZfY5yn1H3yL6" target="_blank">🗺 View on Maps</a>
+        </div>
+      </div>
+      <div class="accom-alert">
+        ⚠️ <strong>Important note:</strong> Your 3 "St. John's" stays are all in the <strong>Conception Bay / Carbonear area</strong>, about 45–60 min northwest of downtown St. John's. Plan to leave accommodations by <strong>8:30–9:00 am</strong> each morning to make the most of city sightseeing. On Jul 2, all groups must <strong>depart no later than 14:30</strong> to reach Argentia ferry terminal by 15:30 for the 17:00 sailing.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════ PACKING LIST ═══════════════════════════ -->
+<section class="packing-section section">
+  <h2 class="section-title">Packing <em>Checklist</em></h2>
+  <div class="section-rule"></div>
+  <div class="packing-grid">
+    <div class="packing-col">
+      <h4>🧥 Clothing (per person)</h4>
+      <div class="packing-item"><div class="packing-check"></div>Waterproof rain jacket</div>
+      <div class="packing-item"><div class="packing-check"></div>Warm fleece / sweater (2)</div>
+      <div class="packing-item"><div class="packing-check"></div>Long sleeve base layers</div>
+      <div class="packing-item"><div class="packing-check"></div>Waterproof hiking boots</div>
+      <div class="packing-item"><div class="packing-check"></div>Comfortable walking shoes</div>
+      <div class="packing-item"><div class="packing-check"></div>Warm hat & gloves</div>
+      <div class="packing-item"><div class="packing-check"></div>Wind-resistant outer layer</div>
+      <div class="packing-item"><div class="packing-check"></div>Canada Day red & white outfit 🍁</div>
+    </div>
+    <div class="packing-col">
+      <h4>🧒 Kids Extras</h4>
+      <div class="packing-item"><div class="packing-check"></div>Waterproof pants</div>
+      <div class="packing-item"><div class="packing-check"></div>Extra change of clothes (daily)</div>
+      <div class="packing-item"><div class="packing-check"></div>Life jackets (check ferry)</div>
+      <div class="packing-item"><div class="packing-check"></div>Motion sickness tablets</div>
+      <div class="packing-item"><div class="packing-check"></div>Snacks, snacks, snacks</div>
+      <div class="packing-item"><div class="packing-check"></div>Tablets / books for long drives</div>
+      <div class="packing-item"><div class="packing-check"></div>Wellies / rubber boots</div>
+      <div class="packing-item"><div class="packing-check"></div>Small backpack for hikes</div>
+    </div>
+    <div class="packing-col">
+      <h4>🎒 Gear & Essentials</h4>
+      <div class="packing-item"><div class="packing-check"></div>Bug spray (DEET — June bugs!)</div>
+      <div class="packing-item"><div class="packing-check"></div>Sunscreen SPF 50</div>
+      <div class="packing-item"><div class="packing-check"></div>Binoculars (whale & iceberg spotting)</div>
+      <div class="packing-item"><div class="packing-check"></div>Reusable water bottles</div>
+      <div class="packing-item"><div class="packing-check"></div>Power bank / car charger</div>
+      <div class="packing-item"><div class="packing-check"></div>First aid kit</div>
+      <div class="packing-item"><div class="packing-check"></div>Camera / waterproof case</div>
+      <div class="packing-item"><div class="packing-check"></div>Parks Canada app downloaded</div>
+    </div>
+    <div class="packing-col">
+      <h4>📋 Documents & Admin</h4>
+      <div class="packing-item"><div class="packing-check"></div>All ferry booking confirmations</div>
+      <div class="packing-item"><div class="packing-check"></div>ID for all travellers</div>
+      <div class="packing-item"><div class="packing-check"></div>Accommodation confirmations</div>
+      <div class="packing-item"><div class="packing-check"></div>Travel insurance details</div>
+      <div class="packing-item"><div class="packing-check"></div>Group emergency contact list</div>
+      <div class="packing-item"><div class="packing-check"></div>Vehicle insurance & registration</div>
+      <div class="packing-item"><div class="packing-check"></div>Offline maps downloaded</div>
+      <div class="packing-item"><div class="packing-check"></div>Health cards (OHIP/provincial)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ BUDGET ═══════════════════════════ -->
+<section class="budget-section">
+  <div class="budget-inner">
+    <h2 class="budget-title">Estimated Budget</h2>
+    <div class="budget-rule"></div>
+    <p class="budget-note">Approximate costs per family of 2 adults + 1–2 kids. All in CAD. Fuel & accommodation costs vary significantly.</p>
+    <div class="budget-grid">
+      <div class="budget-card">
+        <h4>🏔 Gros Morne / Deer Lake</h4>
+        <div class="budget-row"><span>Park entry (all)</span><span class="free">FREE ✓ Canada Strong Pass</span></div>
+        <div class="budget-row"><span>Western Brook Pond tour</span><span>~$90–120 / family</span></div>
+        <div class="budget-row"><span>Insectarium</span><span>~$50–60 / family</span></div>
+        <div class="budget-row"><span>Meals (2 nights)</span><span>~$150–200 / family</span></div>
+      </div>
+      <div class="budget-card">
+        <h4>🧊 Twillingate</h4>
+        <div class="budget-row"><span>Iceberg Quest boat tour</span><span>~$130–180 / family</span></div>
+        <div class="budget-row"><span>Long Point Lighthouse</span><span class="free">FREE ✓</span></div>
+        <div class="budget-row"><span>Meals</span><span>~$80–100 / family</span></div>
+        <div class="budget-row"><span>Winery tasting</span><span>~$20–30 / adult</span></div>
+      </div>
+      <div class="budget-card">
+        <h4>🏙 St. John's</h4>
+        <div class="budget-row"><span>Signal Hill</span><span class="free">FREE ✓ Canada Strong Pass</span></div>
+        <div class="budget-row"><span>Cape Spear</span><span class="free">FREE ✓ Canada Strong Pass</span></div>
+        <div class="budget-row"><span>The Rooms museum</span><span>~$24 / family (under 6 free)</span></div>
+        <div class="budget-row"><span>Meals (2 days)</span><span>~$200–280 / family</span></div>
+        <div class="budget-row"><span>Canada Day activities</span><span class="free">Mostly FREE ✓</span></div>
+      </div>
+      <div class="budget-card">
+        <h4>⛽ Transport</h4>
+        <div class="budget-row"><span>Fuel (full NL route)</span><span>~$200–280 / vehicle</span></div>
+        <div class="budget-row"><span>Ferry meals on board</span><span>~$50–80 / family</span></div>
+        <div class="budget-row"><span>Ferry cabin (return)</span><span>~$60–100 / cabin</span></div>
+      </div>
+    </div>
+    <div class="budget-total">
+      <p>Estimated total per family (excl. accommodation & ferry fares)</p>
+      <h3>~$900 – $1,200 CAD</h3>
+      <p style="font-size:0.78rem;margin-top:8px;opacity:0.7;">Canada Strong Pass saves ~$400–600 CAD for your entire group of 29 on park admissions alone!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ TIPS ═══════════════════════════ -->
+<section class="tips-section">
+  <h2 class="section-title">Group Travel <em>Tips</em></h2>
+  <div class="section-rule"></div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-icon">📱</div>
+      <div>
+        <h4>Set Up a Group Chat</h4>
+        <p>Create a WhatsApp or group chat for all 8 families before departure. Share real-time locations, rest stop alerts, and coordinate convoy driving across the island.</p>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">⛽</div>
+      <div>
+        <h4>Fuel Up Often in NL</h4>
+        <p>Gas stations are sparse in rural Newfoundland. Never let the tank drop below half. Twillingate and the stretch before it is particularly remote — fill up in Grand Falls.</p>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📅</div>
+      <div>
+        <h4>Book Everything in Advance</h4>
+        <p>With 29 people you MUST pre-book: Western Brook Pond tour, Iceberg Quest, all restaurants, and ferry cabins. St. John's on Canada Day sells out months ahead.</p>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🦟</div>
+      <div>
+        <h4>Bug Spray is Essential</h4>
+        <p>Late June in Newfoundland means blackflies and mosquitoes — especially in Gros Morne. Pack strong DEET spray for every family and apply before every outdoor activity.</p>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🌧️</div>
+      <div>
+        <h4>Embrace the Weather</h4>
+        <p>Newfoundland can have sun, fog, rain, and wind all in one day — especially in St. John's. Layers and waterproofs are not optional. The best memories often come from the wet days!</p>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🎟️</div>
+      <div>
+        <h4>Canada Strong Pass = Big Savings</h4>
+        <p>Free park entry is active Jun 19–Sep 7, 2026 covering Gros Morne, Signal Hill & Cape Spear. Download the Parks Canada app. Youth under 17 are always free year-round.</p>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">📶</div>
+      <div>
+        <h4>Cell Coverage is Limited</h4>
+        <p>Rural NL has spotty signal. Download offline Google Maps for all routes before you leave. Save important addresses (accommodations, ferries, restaurants) offline.</p>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🐋</div>
+      <div>
+        <h4>Wildlife Rules</h4>
+        <p>Moose are a serious driving hazard in Newfoundland — especially at dawn and dusk. Drive cautiously on rural roads and watch for moose crossing signs. Also watch for bald eagles and puffins!</p>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🍁</div>
+      <div>
+        <h4>Canada Day — July 1st!</h4>
+        <p>You'll be in St. John's for Canada Day — one of the best places in the country to celebrate. Free concerts, fireworks, street parties and flag-waving. Dress in red and white!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+  <p>🍁 <strong>Newfoundland Adventure 2026</strong> — 8 Families · June 27 – July 3</p>
+  <p style="margin-top:6px;">Have an incredible trip! Newfoundland is unlike anywhere else in the world.</p>
+</footer>
+<script>
+  const sheetUrl = "https://script.google.com/macros/s/AKfycbxM_gWQ8JInrU77_bjh4lUNvo3LRR6za3qZ5I5nTo3NXxNm0zEga86zSmBOsH94clYb/exec";
+
+  async function loadSheetData() {
+    try {
+      const response = await fetch(sheetUrl);
+      const data = await response.json();
+      
+      // Example: Logging data to the console to verify connection
+      console.log("Sheet Data Loaded:", data);
+      
+      // Logic to inject data into your tables goes here
+      // Example: document.getElementById('budget-table').innerHTML = ...
+      
+    } catch (error) {
+      console.error("Error loading sheet:", error);
+    }
+  }
+
+  loadSheetData();
+</script>
+</body>
+</html>
