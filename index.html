@@ -469,6 +469,9 @@
 <section class="route-strip">
   <div class="route-inner">
     <h3>📍 Driving Route Overview</h3>
+    <div id="route-overview">
+  <p>Loading route data...</p>
+</div>
     <div class="route-stops">
       <div class="route-stop">
         <div class="route-dot"></div>
@@ -1652,21 +1655,36 @@
 <script>
   const sheetUrl = "https://script.google.com/macros/s/AKfycbzgxahJICWEFSVUww6TpLwfXSAgmDEs0kMLlpskyTEBCVxT5tCqXNrnQjhXjz-Eurrj/exec";
 
-  async function loadSheetData() {
-    try {
-      const response = await fetch(sheetUrl);
-      const data = await response.json();
-      
-      // Example: Logging data to the console to verify connection
-      console.log("Sheet Data Loaded:", data);
-      
-      // Logic to inject data into your tables goes here
-      // Example: document.getElementById('budget-table').innerHTML = ...
-      
-    } catch (error) {
-      console.error("Error loading sheet:", error);
-    }
+ async function loadSheetData() {
+  try {
+    const response = await fetch(sheetUrl);
+    const data = await response.json();
+
+    // Select the route container
+    const routeContainer = document.getElementById('route-overview');
+    
+    // Create the HTML structure
+    let routeHtml = "<ul>";
+    
+    data.forEach(row => {
+      // This assumes your Sheet columns are named 'Route', 'Status', 'Distance', and 'Time'
+      if(row.Route) { 
+        routeHtml += `
+          <li>
+            <strong>${row.Route}</strong>: 
+            <span style="color: #d13438;">${row.Status}</span> — 
+            ${row.Distance} · ${row.Time}
+          </li>`;
+      }
+    });
+
+    routeHtml += "</ul>";
+    routeContainer.innerHTML = routeHtml;
+
+  } catch (error) {
+    console.error("Error updating route:", error);
   }
+}
 
   loadSheetData();
 </script>
